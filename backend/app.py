@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # <-- add this
+
 app = Flask(__name__)
+CORS(app)  # <-- allow cross-origin requests
 
 @app.route('/chat', methods=['POST'])
 def chat():
