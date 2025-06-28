@@ -6,8 +6,8 @@ import os
 app = Flask(__name__)
 CORS(app, origins="https://anoushkaur.github.io")
 
-# Use environment variable for the OpenAI API key
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+# Correct way with openai>=1.0.0
+client = OpenAI()
 
 @app.route('/chat', methods=['POST'])
 def chat():
