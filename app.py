@@ -6,12 +6,8 @@ import os
 app = Flask(__name__)
 CORS(app, origins="https://anoushkaur.github.io")
 
-# Set OpenAI API key (expects environment variable to be set in Render)
-openai.api_key = os.environ.get("OPENAI_API_KEY")
-
-@app.route('/', methods=['GET'])
-def index():
-    return "Adxania Chatbot backend is running.", 200
+# Set your API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -19,19 +15,19 @@ def chat():
     tone = request.json.get('tone', 'professional')
 
     try:
-        prompt = f"Respond to the following in a {tone} tone:\n{user_input}"
-        response = openai.Completion.create(
-            engine="text-davinci-003",  # use text-davinci-003 for openai==0.28
-            prompt=prompt,
-            max_tokens=150,
-            temperature=0.7,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": f"Respond in a {tone} tone, based on Adxania's services."},
+                {"role": "user", "content": user_input}
+            ],
+            temperature=0.7
         )
-        bot_reply = response.choices[0].text.strip()
-        return jsonify({'response': bot_reply})
-
+        bot_response = response['choices'][0]['message']['content']
+        return jsonify({'response': bot_response})
     except Exception as e:
         import traceback
-        traceback.print_exc()  # This prints full error stack trace to server logs
+        traceback.print_exc()
         return jsonify({'response': "Sorry, there was an error generating a reply."}), 500
 
 if __name__ == '__main__':
