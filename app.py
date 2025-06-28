@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from openai import OpenAI
+import openai
 import os
 
 app = Flask(__name__)
 CORS(app, origins="https://anoushkaur.github.io")
 
-# Correct way with openai>=1.0.0
-client = OpenAI()
+# Use env variable
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -15,14 +15,14 @@ def chat():
     tone = request.json.get('tone', 'professional')
 
     try:
-        completion = client.chat.completions.create(
+        completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": f"Respond in a {tone} tone."},
                 {"role": "user", "content": user_input}
             ]
         )
-        bot_response = completion.choices[0].message.content
+        bot_response = completion.choices[0].message["content"]
         return jsonify({'response': bot_response})
 
     except Exception as e:
