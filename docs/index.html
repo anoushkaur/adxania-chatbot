@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adxania - AI Assistant</title>
+  <title>Adxania - Digital AI Consultant</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+
     .chat-container {
       padding: 2rem;
-      max-width: 600px;
+      max-width: 640px;
       margin: 2rem auto;
     }
 
     .chat-box {
-      border: 1px solid #ccc;
+      border: 1px solid #d1d5db;
       padding: 1rem;
-      height: 300px;
+      height: 340px;
       overflow-y: auto;
-      background: #f9f9f9;
+      background: #ffffff;
       margin-bottom: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     .chat-message.user {
@@ -28,7 +34,7 @@
       background-color: #e0ecff;
       display: inline-block;
       padding: 10px 14px;
-      border-radius: 16px;
+      border-radius: 18px;
       margin-bottom: 8px;
       max-width: 80%;
       float: right;
@@ -37,11 +43,11 @@
 
     .chat-message.bot {
       text-align: left;
-      color: #10b981;
+      color: #065f46;
       background-color: #e6f8f0;
       display: inline-block;
       padding: 10px 14px;
-      border-radius: 16px;
+      border-radius: 18px;
       margin-bottom: 8px;
       max-width: 80%;
       float: left;
@@ -82,41 +88,132 @@
       background-color: #5d37cc;
     }
 
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #7b4eff;
+    }
+
+    .navbar nav a {
+      margin-right: 1rem;
+      color: #374151;
+      text-decoration: none;
+    }
+
     .navbar nav a:nth-child(3),
     .navbar nav a:nth-child(4),
     .navbar nav a:nth-child(5) {
       display: none;
     }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #7b4eff, #5d37cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+
+    .buttons {
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 0.5rem;
+    }
+
+    .btn.primary {
+      background-color: #7b4eff;
+      color: white;
+    }
+
+    .btn.secondary {
+      background-color: transparent;
+      color: #7b4eff;
+      border: 2px solid #7b4eff;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      padding: 2rem 0;
+    }
   </style>
 </head>
 <body>
   <header class="navbar">
-    <div class="logo">🤖 Adxania</div>
+    <div class="logo">🤖 Adxania AI</div>
     <nav>
-      <a href="#">Landing Page</a>
+      <a href="#">Solutions</a>
       <a href="#">Start Chat</a>
-      <!-- Removed Pricing, Sign In, Sign Up -->
     </nav>
   </header>
 
   <main class="hero">
-    <h1><span class="gradient-text">Meet Adxania:</span> Your Personal AI Assistant</h1>
-    <p class="description">Get expert support anytime, anywhere. Adxania uses advanced AI to help with customer engagement and lead generation.</p>
+    <h1><span class="gradient-text">Adxania AI Assistant</span></h1>
+    <p class="description">Looking for cybersecurity help? Curious about IT transformation? Ask away—our AI is powered by enterprise insights and global support.</p>
     <div class="buttons">
-      <a class="btn primary" href="#">Start Chatting</a>
-      <a class="btn secondary" href="#">Learn More</a>
+      <a class="btn primary" href="#chat-box">Start Chatting</a>
+      <a class="btn secondary" href="#">Explore Services</a>
     </div>
   </main>
 
   <section class="chat-container">
     <div id="chat-box" class="chat-box"></div>
+
     <form id="chat-form" class="chat-form">
-      <input type="text" id="user-input" placeholder="Ask me anything..." required />
+      <input type="text" id="user-input" placeholder="Ask me anything about Adxania’s services..." required />
       <button type="submit">Send</button>
     </form>
+
+    <div style="font-size: 0.9rem; color: #6b7280; text-align: center; margin-top: 0.5rem;">
+      Try: <em>“What cybersecurity solutions do you offer?”</em> or <em>“Do you support AWS migration?”</em>
+    </div>
   </section>
 
+  <footer>
+    © 2025 Adxania Cyber Solutions Pvt Ltd. | Built with 🤖 AI for enterprise transformation.
+  </footer>
+
   <script>
+    function getGreeting() {
+      const hour = new Date().getHours();
+      if (hour < 12) return "Good morning ☀️";
+      if (hour < 18) return "Good afternoon 👋";
+      return "Good evening 🌙";
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      appendMessage('bot', `${getGreeting()} I'm your AI consultant from Adxania. Need help with cloud, cybersecurity, or IT solutions? Just ask!`);
+    });
+
     document.getElementById('chat-form').addEventListener('submit', async function (e) {
       e.preventDefault();
       const input = document.getElementById('user-input');
@@ -125,6 +222,7 @@
 
       appendMessage('user', message);
       input.value = '';
+      showTypingIndicator();
 
       try {
         const response = await fetch('https://adxania-chatbot.onrender.com/chat', {
@@ -134,8 +232,10 @@
         });
 
         const data = await response.json();
-        appendMessage('bot', data.response);
+        hideTypingIndicator();
+        appendMessage('bot', data.response || "Hmm, I'm still learning that. Can I redirect you to a specialist?");
       } catch (error) {
+        hideTypingIndicator();
         console.error('Error:', error);
         appendMessage('bot', "Sorry, I couldn't connect to the server.");
       }
@@ -147,6 +247,20 @@
       msg.textContent = text;
       document.getElementById('chat-box').appendChild(msg);
       document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const indicator = document.createElement('div');
+      indicator.className = 'chat-message bot';
+      indicator.id = 'typing-indicator';
+      indicator.textContent = 'Typing...';
+      document.getElementById('chat-box').appendChild(indicator);
+      document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) indicator.remove();
     }
   </script>
 </body>
