@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Adxania - AI Assistant</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="logo">🤖 Adxania</div>
     <nav>
-      <a href="#">Landing Page</a>
-      <a href="#">Start Chat</a>
-      <a href="#">Pricing</a>
-      <a href="#">Sign In</a>
-      <a href="#">Sign Up</a>
+      <a href="#landing">Landing Page</a>
+      <a href="#chat">Start Chat</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
     </nav>
   </header>
 
-  <main class="hero">
+  <main id="landing" class="hero">
     <h1><span class="gradient-text">Meet Adxania:</span> Your Personal AI Assistant</h1>
     <p class="description">Get expert support anytime, anywhere. Adxania uses advanced AI to help with customer engagement and lead generation.</p>
     <div class="buttons">
-      <a class="btn primary" href="#">Start Chatting</a>
-      <a class="btn secondary" href="#">Learn More</a>
+      <a class="btn primary" href="#chat">Start Chatting</a>
+      <a class="btn secondary" href="#pricing">Learn More</a>
     </div>
   </main>
+
+  <section id="chat" class="chat-container">
+    <div id="chat-box" class="chat-box"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <section id="pricing" class="info-section">
+    <h2>Pricing</h2>
+    <p><strong>Free:</strong> Try the chatbot with basic support</p>
+    <p><strong>Pro:</strong> $19/month – Includes priority support and custom integrations</p>
+  </section>
+
+  <section id="faq" class="info-section">
+    <h2>FAQ</h2>
+    <p><strong>What is Adxania?</strong> A chatbot platform that boosts your customer engagement using AI.</p>
+    <p><strong>Can I integrate it with my website?</strong> Yes – easily embed Adxania on any site.</p>
+  </section>
+
+  <script src="app.js"></script>
 </body>
 </html>
