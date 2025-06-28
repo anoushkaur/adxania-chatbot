@@ -6,26 +6,28 @@ import os
 app = Flask(__name__)
 CORS(app, origins="https://anoushkaur.github.io")
 
-# Load your OpenAI key from environment variable
-client = OpenAI()  # Do NOT pass api_key=... anymore
+# Use environment variable for the OpenAI API key
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 @app.route('/chat', methods=['POST'])
 def chat():
     user_input = request.json.get('message')
+    tone = request.json.get('tone', 'professional')
 
-    # Call OpenAI's chat endpoint
     try:
-        response = client.chat.completions.create(
+        completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "system", "content": f"Respond in a {tone} tone."},
                 {"role": "user", "content": user_input}
             ]
         )
-        reply = response.choices[0].message.content
-        return jsonify({'response': reply})
+        bot_response = completion.choices[0].message.content
+        return jsonify({'response': bot_response})
+
     except Exception as e:
-        return jsonify({'response': f"Error: {str(e)}"}), 500
+        print("Error:", str(e))
+        return jsonify({'response': "Sorry, there was an error generating a reply."}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
