@@ -26,7 +26,19 @@ document.getElementById('chat-form').addEventListener('submit', async function (
 function appendMessage(sender, text) {
   const msg = document.createElement('div');
   msg.className = `chat-message ${sender}`;
-  msg.textContent = text;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = text;
+
+  if (sender === 'bot') {
+    const avatar = document.createElement('div');
+    avatar.className = 'bot-avatar';
+    msg.appendChild(avatar);
+  }
+
+  msg.appendChild(bubble);
   document.getElementById('chat-box').appendChild(msg);
   document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
 }
+

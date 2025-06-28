@@ -7,42 +7,56 @@
 .chat-box {
   border: 1px solid #ccc;
   padding: 1rem;
-  height: 300px;
+  height: 360px;
   overflow-y: auto;
-  background: #f9f9f9;
+  background: #ffffff;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-end;
+  max-width: 80%;
 }
 
 .chat-message.user {
-  text-align: right;
-  color: #3b82f6;
-  background-color: #e0ecff;
-  display: inline-block;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.chat-message.user .bubble {
+  background: #e0ecff;
+  color: #333;
+  border-radius: 16px 16px 0 16px;
   padding: 10px 14px;
-  border-radius: 16px;
-  margin-bottom: 8px;
-  max-width: 80%;
-  float: right;
-  clear: both;
 }
 
 .chat-message.bot {
-  text-align: left;
-  color: #10b981;
-  background-color: #e6f8f0;
-  display: inline-block;
+  justify-content: flex-start;
+}
+
+.chat-message.bot .bubble {
+  background: #e6f8f0;
+  color: #333;
+  border-radius: 16px 16px 16px 0;
   padding: 10px 14px;
-  border-radius: 16px;
-  margin-bottom: 8px;
-  max-width: 80%;
-  float: left;
-  clear: both;
+}
+
+.bot-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: url('https://cdn-icons-png.flaticon.com/512/4712/4712032.png') center/cover;
 }
 
 .chat-form {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
 .chat-form input {
@@ -72,11 +86,4 @@
 
 .chat-form button:hover {
   background-color: #5d37cc;
-}
-
-/* Hide Pricing, Sign In, Sign Up from nav */
-.navbar nav a:nth-child(3),
-.navbar nav a:nth-child(4),
-.navbar nav a:nth-child(5) {
-  display: none;
 }
