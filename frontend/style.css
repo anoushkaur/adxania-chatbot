@@ -1,86 +1,82 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #a3f7bf, #cbf1ff, #dab6fc);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.chat-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: transparent;
-  font-weight: bold;
-}
-
-.navbar nav a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  color: #333;
-}
-
-.logo {
-  font-size: 1.2rem;
-}
-
-.hero {
-  text-align: center;
-  margin: auto;
-  max-width: 700px;
-  padding: 3rem 1rem;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
+.chat-box {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  height: 300px;
+  overflow-y: auto;
+  background: #f9f9f9;
   margin-bottom: 1rem;
-}
-
-.gradient-text {
-  background: linear-gradient(to right, #ff5f6d, #ffc371, #7f7fd5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.description {
-  background-color: rgba(255, 255, 255, 0.3);
-  padding: 1rem 1.5rem;
   border-radius: 8px;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  color: #111;
 }
 
-.buttons {
+.chat-message.user {
+  text-align: right;
+  color: #3b82f6;
+  background-color: #e0ecff;
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  max-width: 80%;
+  float: right;
+  clear: both;
+}
+
+.chat-message.bot {
+  text-align: left;
+  color: #10b981;
+  background-color: #e6f8f0;
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  max-width: 80%;
+  float: left;
+  clear: both;
+}
+
+.chat-form {
   display: flex;
-  justify-content: center;
   gap: 1rem;
 }
 
-.btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.btn.primary {
-  background: linear-gradient(to right, #fc5c7d, #6a82fb);
-  color: white;
-}
-
-.btn.primary:hover {
-  opacity: 0.85;
-}
-
-.btn.secondary {
-  background: white;
-  color: #333;
+.chat-form input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 16px;
   border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
 }
 
-.btn.secondary:hover {
-  background: #f0f0f0;
+.chat-form input:focus {
+  border-color: #7b4eff;
+  box-shadow: 0 0 0 2px rgba(123, 78, 255, 0.2);
+}
+
+.chat-form button {
+  padding: 0.75rem 1.2rem;
+  background-color: #7b4eff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-form button:hover {
+  background-color: #5d37cc;
+}
+
+/* Hide Pricing, Sign In, Sign Up from nav */
+.navbar nav a:nth-child(3),
+.navbar nav a:nth-child(4),
+.navbar nav a:nth-child(5) {
+  display: none;
 }
