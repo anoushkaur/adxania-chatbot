@@ -10,7 +10,7 @@ document.getElementById('chat-form').addEventListener('submit', async function (
 const response = await fetch('https://adxania-chatbot.onrender.com/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message })
+body: JSON.stringify({ message, tone: "professional" })
   });
 
   const data = await response.json();
