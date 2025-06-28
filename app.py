@@ -30,9 +30,9 @@ def chat():
         return jsonify({'response': bot_reply})
 
     except Exception as e:
-    import traceback
-    traceback.print_exc()  # This prints full error stack trace to server logs
-    return jsonify({'response': "Sorry, there was an error generating a reply."}), 500
+        import traceback
+        traceback.print_exc()  # This prints full error stack trace to server logs
+        return jsonify({'response': "Sorry, there was an error generating a reply."}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
